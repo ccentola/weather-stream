@@ -48,6 +48,11 @@ def create_database():
         ON weather_readings(timestamp)
     ''')
 
+    cursor.execute('''
+        CREATE INDEX IF NOT EXISTS idx_zipcode_timestamp
+        ON weather_readings(zipcode, timestamp)
+    ''')
+
     conn.commit()
     conn.close()
     print(f"Database '{DB_NAME}' created/verified successfully")
